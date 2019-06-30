@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,get_list_or_404
 from blog.models import (Blogger,Post,Comment)
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -36,7 +36,8 @@ class CommentCreateView(LoginRequiredMixin,generic.CreateView):
         return context
     
     def form_valid(self,form):
-        form.instance.author = self.request.user
+        author = Blogger.objects.get(user=self.request.user)
+        form.instance.author = author
         form.instance.post = get_object_or_404(Post, pk=self.kwargs['pk'])
         return super(CommentCreateView, self).form_valid(form)
     

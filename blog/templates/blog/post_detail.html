@@ -9,7 +9,7 @@
   <p><strong>Date:</strong> {{ post.post_date }}</p>  
   <div style="margin-left:20px;margin-top:20px">
   <h4>Comments</h4>
-  {% for comment in post.comment.all%}
+  {% for comment in post.post.all %}
   <hr>
   <p>{{comment.author}} ({{comment.post_date}}) - {{comment.contents}}</p>
   {% endfor %}
