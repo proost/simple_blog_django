@@ -28,7 +28,7 @@ class Post(models.Model):
     post_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Blogger,on_delete=models.CASCADE,related_name='post_author')
     contents = models.TextField()
-    comment = models.ForeignKey(Comment,on_delete=models.CASCADE,related_name='comment',blank=True, null=True)
+    comment = models.ForeignKey(Comment,on_delete=models.CASCADE,related_name='post_comment',blank=True, null=True)
 
     class Meta:
         ordering = ['-post_date']
